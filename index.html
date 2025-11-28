@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+
+    <!-- Fonts -->
+    <link href="https://fonts.cdnfonts.com/css/harry-potter" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="background-layers" aria-hidden="true">
+    <div class="bg-aurora"></div>
+    <div class="bg-stars"></div>
+    <div class="bg-mist"></div>
+    <div class="castle-silhouette"></div>
+    <div class="golden-snitch">
+        <span class="wing left"></span>
+        <span class="core"></span>
+        <span class="wing right"></span>
+    </div>
+    <div class="patronus-orb"></div>
+</div>
+
+<header>
+    <nav>
+        <h2 class="logo">Portfolio</h2>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">contact</a></li>
+
+        </ul>
+
+        <!-- 🎵 Music Toggle Button -->
+        <button id="musicToggle" class="music-btn" aria-label="Toggle music">🎵</button>
+    </nav>
+</header>
+
+<!-- Hero Section -->
+<section class="hero reveal">
+    <div class="hero-text">
+        <p class="eyebrow">AI &amp; Data Science Student</p>
+        <h1>Welcome, I'm <span class="hp-font">Sneha Salunkhe</span></h1>
+        <p class="tagline">
+            I’m an AI and Data Science student weaving together machine intelligence, statistics, and immersive UI design to conjure meaningful experiences.
+        </p>
+        <a href="#projects" class="btn magic-btn">Reveal My Projects</a>
+    </div>
+    <div class="hero-visual">
+        <div class="mystic-circle">
+            <div class="circle-glow"></div>
+            <button id="owlCourier" class="owl-perch" aria-label="Deliver my Hogwarts house">
+                <span class="owl">
+                    <span class="owl-face">
+                        <span class="owl-eye left"></span>
+                        <span class="owl-eye right"></span>
+                        <span class="owl-beak"></span>
+                    </span>
+                    <span class="owl-body">
+                        <span class="owl-wing left"></span>
+                        <span class="owl-wing right"></span>
+                    </span>
+                    <span class="owl-feet"></span>
+                </span>
+                <span class="perch"></span>
+            </button>
+        </div>
+        <div class="floating-scroll-wrapper" aria-live="polite">
+            <div id="heroScroll" class="house-scroll floating">
+                <p class="scroll-title">House Assignment</p>
+                <p id="heroScrollResult" class="house-result">Awaiting delivery...</p>
+            </div>
+        </div>
+        <div class="magic-invite">
+            <p class="magic-label">Sorting Challenge</p>
+            <h3 class="magic-title hp-font">Magic ?</h3>
+             <div id="magicGame" class="house-form" style="display: none;">
+            <label for="wizardName" class="sr-only">Enter your name</label>
+            <input id="wizardName" type="text" placeholder="Enter your name">
+            <button id="houseButton" class="house-btn" type="button">Receive My House</button>
+        </div>
+            <button id="wannaTryBtn" class="magic-cta">Wanna Try?</button>
+        </div>
+    </div>
+</section>
+
+
+<!-- About Section -->
+<section id="about" class="about-section reveal">
+    <div class="about-grid">
+        <div class="about-content">
+            <h2>About Me</h2>
+            <p>
+                I am an AI and Data Science student passionate about transforming complex data models into practical, user-focused solutions. My work encompasses building neural network architectures, developing intelligent systems, and creating data visualizations that make insights accessible.
+            </p>
+            <p>
+                My recent projects include ANN and SNN-based image classification systems, interactive data dashboards, and modern web applications. I'm continuously exploring advanced machine learning techniques, including multimodal AI and deep learning frameworks, to solve real-world problems.
+            </p>
+        </div>
+        <figure class="about-photo">
+            <img src="images/sneha-portrait.jpeg" alt="Sneha Salunkhe" loading="lazy">
+        </figure>
+    </div>
+</section>
+
+<!-- Skills Section -->
+<section id="skills" class="skills-section reveal">
+    <h2 class="hp-font">Skills</h2>
+
+    <div class="skill-group">
+        <h3>Programming Languages</h3>
+        <div class="skill-container">
+            <div class="skill-card">Python</div>
+            <div class="skill-card">C++</div>
+            <div class="skill-card">C</div>
+            <div class="skill-card">JavaScript (ES6+)</div>
+            <div class="skill-card">TypeScript</div>
+        </div>
+    </div>
+
+    <div class="skill-group">
+        <h3>Web Development</h3>
+        <div class="skill-container">
+            <div class="skill-card">React.js</div>
+            <div class="skill-card">Node.js</div>
+            <div class="skill-card">HTML5</div>
+            <div class="skill-card">CSS</div>
+        </div>
+    </div>
+
+    <div class="skill-group">
+        <h3>Databases</h3>
+        <div class="skill-container">
+            <div class="skill-card">MySQL</div>
+            <div class="skill-card">MongoDB</div>
+        </div>
+    </div>
+
+    <div class="skill-group">
+        <h3>Python Libraries</h3>
+        <div class="skill-container">
+            <div class="skill-card">NumPy</div>
+            <div class="skill-card">Pandas</div>
+            <div class="skill-card">Matplotlib</div>
+            <div class="skill-card">TensorFlow</div>
+            <div class="skill-card">PyTorch</div>
+            <div class="skill-card">Scikit-Learn</div>
+        </div>
+    </div>
+</section>
+
+<!-- Projects Section -->
+<section id="projects" class="projects-section reveal">
+    <h2 class="hp-font">Projects</h2>
+
+    <div class="project-grid">
+
+        <div class="project-card">
+            <h3>Image Classification & Colorization System (ANN & SNN)</h3>
+            <p>
+                Developed Artificial Neural Network (ANN) and Spiking Neural Network (SNN)
+                based models for image colorization and classification.  
+                Improved restoration accuracy and classification efficiency using biologically inspired computation.  
+                <br><strong>Year:</strong> 2024
+            </p>
+            <a href="#" target="_blank">View Project</a>
+        </div>
+
+        <div class="project-card">
+            <h3>Fruit Drink Landing Page</h3>
+            <p>
+                A landing page featuring a rotating 3D can model with fruit-themed transitions.
+                Built with Framer Motion & @react-three/fiber, enhancing 3D React UI skills.  
+                <br><strong>Year:</strong> 2025
+            </p>
+            <a href="#" target="_blank">View Project</a>
+        </div>
+
+        <div class="project-card">
+            <h3>Basic Travel Planner Web App</h3>
+            <p>
+                A simple full-stack travel planning app using HTML, CSS, JavaScript & SQL.
+                Users could search destinations, plan itineraries, and manage trips.  
+                <br><strong>Year:</strong> 2022
+            </p>
+            <a href="#" target="_blank">View Project</a>
+        </div>
+
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="contact-section reveal">
+    <h2 class="hp-font">Let's Connect</h2>
+    <p class="contact-intro">
+        Always excited to chat about AI, data stories, and whimsical interface ideas—reach out anytime.
+    </p>
+    <div class="contact-grid">
+        <a class="contact-card icon-card" href="mailto:snehasalunkhe394@gmail.com" aria-label="Send an email">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="3" y="6" width="18" height="12" rx="2" ry="2" fill="none" stroke="currentColor" stroke-width="1.6"></rect>
+                <polyline points="3 7 12 13 21 7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></polyline>
+            </svg>
+            <span class="sr-only">Email</span>
+        </a>
+        <a class="contact-card icon-card" href="https://www.linkedin.com/in/sneha-salunkhe-b47724293" target="_blank" rel="noreferrer" aria-label="Visit my LinkedIn profile">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M6 9v9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+                <circle cx="6" cy="6" r="1.5" fill="currentColor"></circle>
+                <path d="M11 9v9m0-5.5c0-2 1.5-3.5 3.5-3.5S18 9.5 18 12v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+            </svg>
+            <span class="sr-only">LinkedIn</span>
+        </a>
+        <a class="contact-card icon-card" href="https://github.com/snehasalunkhe45" target="_blank" rel="noreferrer" aria-label="Visit my GitHub profile">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M9 19c-4 1.5-4-2.5-6-3m12 6v-3.9a3.4 3.4 0 0 0-.94-2.6c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 18 4.77 5.07 5.07 0 0 0 17.91 1S16.73.65 14 2.48a13.38 13.38 0 0 0-10 0C1.27.65.09 1 .09 1A5.07 5.07 0 0 0 0 4.77a5.44 5.44 0 0 0-1.5 3.85c0 5.42 3.3 6.61 6.44 7A3.4 3.4 0 0 0 4 18.11V22" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+            <span class="sr-only">GitHub</span>
+        </a>
+        <a class="contact-card icon-card" href="tel:+917499293987" aria-label="Give me a call">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M5 4h4l2 5-3 2a13 13 0 0 0 5 5l2-3 5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+            <span class="sr-only">Phone</span> 
+        </a>
+    </div>
+</section>
+
+<footer>
+    <p>© 2025 Portfolio created by Sneha Salunkhe ⚡</p>
+</footer>
+
+<!-- 🎵 Theme Music File -->
+<audio id="themeMusic" loop>
+    <source src="harry-potter-theme.mp3" type="audio/mpeg">
+</audio>
+
+<script src="script.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    document.body.classList.add("page-loaded");
+});
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const wannaTryBtn = document.getElementById("wannaTryBtn");
+    const magicGame = document.getElementById("magicGame");
+    const wizardName = document.getElementById("wizardName");
+    const houseButton = document.getElementById("houseButton");
+    const heroScrollResult = document.getElementById("heroScrollResult");
+
+    // Ensure the form stays hidden at first
+    magicGame.style.display = "none";
+
+    // When user clicks "Wanna Try?"
+    wannaTryBtn.addEventListener("click", function () {
+        wannaTryBtn.style.display = "none";        // hide Wanna Try button
+        magicGame.style.display = "block";         // show form
+        wizardName.focus();
+    });
+
+    // When user clicks "Receive My House"
+    houseButton.addEventListener("click", function () {
+        const name = wizardName.value.trim();
+
+        if (name) {
+            const houses = ["Gryffindor", "Hufflepuff", "Ravenclaw", "Slytherin"];
+            const assignedHouse = houses[Math.floor(Math.random() * houses.length)];
+
+            heroScrollResult.textContent = `${name}, your house is ${assignedHouse}!`;
+
+            // Reset UI after reveal
+            wizardName.value = "";
+            magicGame.style.display = "none";
+            wannaTryBtn.style.display = "inline-block"; // bring Wanna Try back
+        } else {
+            alert("Please enter your name first!");
+            wizardName.focus();
+        }
+    });
+
+});
+</script>
+</body>
+</html>

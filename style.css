@@ -1,0 +1,1165 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+:root {
+    --night-900: #03030d;
+    --night-700: #151735;
+    --night-500: #27295a;
+    --celestial-500: #a5b4ff;
+    --celestial-300: #dbe4ff;
+    --accent-gold: #f5d67b;
+    --accent-amber: #f7a83b;
+    --accent-pink: #ff8fd2;
+    --accent-cyan: #7de3ff;
+    --text-body: #f5f7ff;
+    --text-muted: #c1c5e0;
+    --card-bg: rgba(12, 15, 34, 0.65);
+    --border-soft: rgba(255, 255, 255, 0.15);
+    --shadow-soft: 0 20px 50px rgba(12, 15, 34, 0.55);
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Space Grotesk', 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--text-body);
+    background-image: url('images/hogwarts-castle.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-color: rgba(10, 14, 28, 0.6);
+    background-blend-mode: screen;
+    min-height: 100vh;
+    line-height: 1.6;
+    overflow-x: hidden;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+body.page-loaded {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.hp-font {
+    font-family: 'Harry Potter', 'Cinzel', serif;
+    letter-spacing: 0.08em;
+}
+
+.background-layers {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.bg-aurora,
+.bg-stars,
+.bg-mist,
+.castle-silhouette,
+.golden-snitch,
+.patronus-orb {
+    position: absolute;
+    inset: 0;
+}
+
+.bg-aurora {
+    background: conic-gradient(from 120deg, rgba(91, 178, 255, 0.12), rgba(255, 169, 245, 0.08), rgba(96, 235, 195, 0.1), rgba(91, 178, 255, 0.12));
+    filter: blur(120px);
+    animation: auroraMove 18s linear infinite alternate;
+    opacity: 0.6;
+}
+
+.bg-stars::before,
+.bg-stars::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+        radial-gradient(rgba(255,255,255,0.5) 1px, transparent 1px),
+        radial-gradient(rgba(255,255,255,0.35) 1px, transparent 1px);
+    background-size: 100px 100px, 150px 150px;
+    animation: twinkle 6s linear infinite;
+    opacity: 0;
+    display: none;
+}
+
+.bg-stars::after {
+    animation-duration: 9s;
+    opacity: 0;
+    transform: rotate(15deg);
+    display: none;
+}
+
+.bg-mist {
+    background: radial-gradient(circle at 50% 110%, rgba(255, 255, 255, 0.06), transparent 55%);
+    filter: blur(60px);
+    animation: drift 25s ease-in-out infinite;
+    opacity: 0.5;
+}
+
+.castle-silhouette {
+    bottom: 0;
+    top: auto;
+    height: 100vh;
+    background: linear-gradient(to top, rgba(9, 11, 26, 0.3), transparent 40%);
+    mask: linear-gradient(transparent 0%, black 20%, black 100%);
+}
+
+.castle-silhouette::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 100vw;
+    height: 100%;
+    transform: translateX(-50%);
+    background-image: url('images/hogwarts-castle.jpg');
+    background-size: cover;
+    background-position: center bottom;
+    opacity: 0.35;
+    filter: grayscale(0.3) contrast(1.1) brightness(0.85);
+}
+
+.golden-snitch {
+    width: 60px;
+    height: 60px;
+    top: 20%;
+    animation: snitchFlight 14s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    opacity: 0.3;
+}
+
+.golden-snitch .core {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #fff3b0, #f7a83b);
+    box-shadow: 0 0 12px rgba(247, 168, 59, 0.8), 0 0 30px rgba(245, 214, 123, 0.45);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.golden-snitch .wing {
+    position: absolute;
+    width: 40px;
+    height: 8px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.65);
+    top: 50%;
+    transform: translateY(-50%);
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
+    animation: wingFlap 0.8s ease-in-out infinite;
+}
+
+.golden-snitch .wing.left {
+    right: calc(50% + 10px);
+    transform-origin: 100% 50%;
+}
+
+.golden-snitch .wing.right {
+    left: calc(50% + 10px);
+    transform-origin: 0 50%;
+    animation-delay: 0.1s;
+}
+
+.patronus-orb {
+    width: 200px;
+    height: 200px;
+    top: 65%;
+    left: 10%;
+    background: radial-gradient(circle, rgba(125, 227, 255, 0.4), rgba(125, 227, 255, 0.02));
+    filter: blur(6px);
+    border-radius: 50%;
+    animation: float 12s ease-in-out infinite;
+    mix-blend-mode: screen;
+    opacity: 0.4;
+}
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: rgba(3, 3, 13, 0.55);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-soft);
+}
+
+nav {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.5rem clamp(1rem, 5vw, 3rem);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    font-size: 1.25rem;
+    letter-spacing: 0.1em;
+    color: var(--accent-gold);
+    text-transform: uppercase;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+}
+
+.nav-links a {
+    color: var(--text-body);
+    text-decoration: none;
+    font-size: 0.95rem;
+    letter-spacing: 0.05em;
+    position: relative;
+    padding-bottom: 0.2rem;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent-gold), var(--accent-pink));
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+.nav-links a:hover {
+    color: var(--accent-cyan);
+    transform: translateY(-2px);
+}
+
+.music-btn {
+    border: 1px solid var(--accent-gold);
+    background: rgba(5, 8, 22, 0.5);
+    color: var(--accent-gold);
+    padding: 0.6rem 1.2rem;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.music-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(245, 214, 123, 0.3);
+}
+
+.hero {
+    max-width: 1200px;
+    margin: clamp(2rem, 8vw, 5rem) auto;
+    padding: clamp(2rem, 6vw, 4rem);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2.5rem;
+    align-items: center;
+}
+
+.hero-text h1 {
+    font-size: clamp(2.5rem, 6vw, 3.8rem);
+    margin-bottom: 1.5rem;
+}
+
+.eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    font-size: 0.85rem;
+    color: var(--accent-gold);
+    margin-bottom: 0.6rem;
+}
+
+.tagline {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+    max-width: 48ch;
+}
+
+.hero-text p {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    max-width: 40ch;
+    margin-bottom: 1.5rem;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.9rem 1.8rem;
+    border-radius: 999px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+}
+
+.magic-btn {
+    background: linear-gradient(120deg, var(--accent-cyan), var(--accent-pink));
+    color: #041122;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.magic-btn::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,0.6), rgba(255,255,255,0));
+    transform: translateX(-100%);
+    transition: transform 0.5s ease;
+}
+
+.magic-btn:hover::after {
+    transform: translateX(100%);
+}
+
+.magic-btn:hover {
+    transform: translateY(-3px) scale(1.01);
+    box-shadow: 0 15px 30px rgba(125, 227, 255, 0.35);
+}
+
+.hero-visual {
+    position: relative;
+    min-height: 300px;
+    border-radius: 32px;
+    background: rgba(11, 15, 35, 0.6);
+    border: 1px solid var(--border-soft);
+    overflow: hidden;
+    box-shadow: var(--shadow-soft);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2.5rem;
+    padding: 2rem 1rem 2.5rem;
+}
+
+.floating-scroll-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    pointer-events: none;
+}
+
+.mystic-circle {
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    position: relative;
+    border: 2px solid rgba(255, 255, 255, 0.25);
+    background: radial-gradient(circle, rgba(125, 227, 255, 0.1), rgba(4, 7, 15, 0.9));
+    box-shadow: inset 0 0 30px rgba(125, 227, 255, 0.3), 0 20px 40px rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.circle-glow {
+    position: absolute;
+    inset: 15px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.2), transparent 70%);
+    animation: pulse 4s ease-in-out infinite;
+}
+
+.magic-invite {
+    text-align: center;
+}
+
+.magic-label {
+    text-transform: uppercase;
+    letter-spacing: 0.4em;
+    font-size: 0.75rem;
+    color: var(--accent-gold);
+    margin-bottom: 0.5rem;
+}
+
+.magic-title {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    color: var(--accent-cyan);
+    text-shadow: 0 0 18px rgba(125, 227, 255, 0.5);
+    animation: titleGlow 2.8s ease-in-out infinite;
+    margin-bottom: 1rem;
+}
+
+.magic-title::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent-pink), transparent);
+    margin: 0.6rem auto 0;
+    opacity: 0.5;
+}
+
+.magic-cta {
+    border: 1px solid var(--accent-gold);
+    border-radius: 999px;
+    padding: 0.6rem 1.6rem;
+    background: rgba(5, 8, 16, 0.6);
+    color: var(--accent-gold);
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.magic-cta:hover {
+    color: #100b02;
+    background: linear-gradient(120deg, var(--accent-gold), var(--accent-pink));
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(255, 173, 86, 0.3);
+}
+
+.magic-cta:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background: rgba(5, 8, 16, 0.4);
+    color: rgba(255, 255, 255, 0.6);
+    transform: none;
+    box-shadow: none;
+}
+
+section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: clamp(2rem, 6vw, 4rem);
+}
+
+section h2 {
+    font-size: clamp(2rem, 4vw, 2.6rem);
+    margin-bottom: 1.5rem;
+    color: var(--accent-cyan);
+}
+
+.about-section,
+.skills-section,
+.projects-section {
+    background: var(--card-bg);
+    border: 1px solid var(--border-soft);
+    border-radius: 28px;
+    box-shadow: var(--shadow-soft);
+    margin-bottom: clamp(2rem, 6vw, 3.5rem);
+}
+
+.about-section p {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 2.5rem;
+    align-items: center;
+}
+
+.about-content p + p {
+    margin-top: 1rem;
+}
+
+.about-photo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    text-align: center;
+}
+
+.about-photo img {
+    width: 100%;
+    border-radius: 24px;
+    border: 1px solid var(--border-soft);
+    box-shadow: var(--shadow-soft);
+}
+
+.about-photo figcaption {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.skill-group {
+    margin-bottom: 2rem;
+}
+
+.skill-group h3 {
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 0.2em;
+    color: var(--accent-gold);
+    margin-bottom: 0.8rem;
+}
+
+.skill-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.skill-card {
+    padding: 0.75rem 1.2rem;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-body);
+    font-size: 0.95rem;
+    backdrop-filter: blur(6px);
+    transition: transform 0.3s ease, border 0.3s ease;
+}
+
+.skill-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent-cyan);
+}
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+}
+
+.project-card {
+    padding: 1.5rem;
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(6, 10, 25, 0.8);
+    backdrop-filter: blur(6px);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, border 0.3s ease;
+}
+
+.project-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at top right, rgba(125,227,255,0.25), transparent 45%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.project-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.05), transparent 60%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--accent-cyan);
+    box-shadow: 0 20px 35px rgba(8, 12, 28, 0.55);
+}
+
+.project-card:hover::before {
+    opacity: 1;
+}
+
+.project-card:hover::after {
+    opacity: 1;
+}
+
+.project-card h3 {
+    color: var(--celestial-300);
+    margin-bottom: 0.7rem;
+}
+
+.project-card p {
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+}
+
+.project-card a {
+    color: var(--accent-cyan);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.contact-section {
+    background: var(--card-bg);
+    border: 1px solid var(--border-soft);
+    border-radius: 28px;
+    box-shadow: var(--shadow-soft);
+    margin-bottom: clamp(2rem, 6vw, 3.5rem);
+}
+
+.contact-intro {
+    color: var(--text-muted);
+    max-width: 60ch;
+    margin-bottom: 2rem;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1.25rem;
+}
+
+.contact-card {
+    padding: 1.5rem;
+    border-radius: 28px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-body);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease, border 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--accent-cyan);
+    box-shadow: 0 18px 32px rgba(5, 10, 25, 0.55);
+    background: linear-gradient(135deg, rgba(125, 227, 255, 0.2), rgba(255, 143, 210, 0.08));
+}
+
+.contact-card svg {
+    width: 46px;
+    height: 46px;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+footer {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+    animation: fadeUp 0.8s ease;
+}
+
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .hero {
+        grid-template-columns: 1fr;
+        margin-top: 1rem;
+    }
+
+    .hero-visual {
+        min-height: 260px;
+    }
+}
+
+@keyframes auroraMove {
+    0% { transform: translate(-10%, -5%) scale(1); }
+    50% { transform: translate(10%, 5%) scale(1.1); }
+    100% { transform: translate(-10%, 0%) scale(1); }
+}
+
+@keyframes twinkle {
+    0% { opacity: 0.6; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.1); }
+    100% { opacity: 0.6; transform: scale(1); }
+}
+
+@keyframes drift {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+    100% { transform: translateY(0); }
+}
+
+@keyframes snitchFlight {
+    0% { transform: translate(0, 0); }
+    25% { transform: translate(40vw, 10vh); }
+    50% { transform: translate(-20vw, 20vh); }
+    75% { transform: translate(30vw, -10vh); }
+    100% { transform: translate(0, 0); }
+}
+
+@keyframes wingFlap {
+    0%, 100% { transform: scaleY(1); }
+    50% { transform: scaleY(0.4); }
+}
+
+@keyframes float {
+    0% { transform: translateY(0) scale(0.95); }
+    50% { transform: translateY(-25px) scale(1.05); }
+    100% { transform: translateY(0) scale(0.95); }
+}
+
+@keyframes wandFloat {
+    0%, 100% { transform: translate(-50%, 0) rotate(-10deg); }
+    50% { transform: translate(-50%, -10px) rotate(-6deg); }
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.7; transform: scale(0.9); }
+    50% { opacity: 1; transform: scale(1.05); }
+}
+
+@keyframes spin {
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes sparkFloat {
+    0% { transform: translateY(0) scale(0.8); opacity: 0.5; }
+    50% { transform: translateY(-30px) scale(1.2); opacity: 1; }
+    100% { transform: translateY(0) scale(0.8); opacity: 0.5; }
+}
+
+@keyframes fadeUp {
+    0% { opacity: 0; transform: translateY(25px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes titleGlow {
+    0%, 100% { text-shadow: 0 0 10px rgba(125,227,255,0.5); }
+    50% { text-shadow: 0 0 25px rgba(255,143,210,0.7); }
+}
+
+/* Owl Game */
+.owl-game {
+    position: relative;
+    margin: -1rem auto 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    max-width: 420px;
+    background: rgba(5, 8, 16, 0.65);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 24px;
+    padding: 1.5rem;
+    box-shadow: var(--shadow-soft);
+    opacity: 0;
+    transform: translateY(30px);
+    pointer-events: none;
+    max-height: 0;
+    overflow: hidden;
+    transition: opacity 0.5s ease, transform 0.5s ease, max-height 0.5s ease;
+}
+
+.owl-game.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+    max-height: 500px;
+    margin-top: 1rem;
+}
+
+.house-form {
+    backdrop-filter: blur(12px);
+    background: rgba(5, 8, 16, 0.65);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 18px;
+    padding: 0.75rem;
+    display: flex;
+    gap: 0.5rem;
+    width: 100%;
+}
+
+.house-form input {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    padding: 0.55rem 0.8rem;
+    color: var(--text-body);
+    font-size: 0.95rem;
+}
+
+.house-form input::placeholder {
+    color: rgba(255, 255, 255, 0.65);
+}
+
+.house-form input.input-error {
+    border-color: #ff7373;
+}
+
+.house-btn {
+    background: linear-gradient(120deg, var(--accent-gold), var(--accent-pink));
+    color: #1b1325;
+    border: none;
+    border-radius: 12px;
+    padding: 0.55rem 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    font-size: 0.85rem;
+}
+
+.house-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(255, 173, 86, 0.35);
+}
+
+.house-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+}
+
+.owl-perch {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    position: relative;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+    width: 120px;
+}
+
+.owl {
+    width: 90px;
+    height: 100px;
+    background: radial-gradient(circle at 30% 30%, #fff, #d9d1c7);
+    border-radius: 50% 50% 40% 40%;
+    position: relative;
+    box-shadow: 0 12px 25px rgba(3, 4, 10, 0.4);
+    animation: owlIdle 4s ease-in-out infinite;
+}
+
+.owl-face {
+    position: absolute;
+    top: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70px;
+    height: 40px;
+    border-radius: 40px;
+    background: #f8f4ee;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 12px;
+    align-items: center;
+}
+
+.owl-eye {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #2b1d0f;
+    position: relative;
+    animation: blink 6s infinite;
+}
+
+.owl-eye::after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.8);
+    top: 2px;
+    left: 4px;
+}
+
+.owl-beak {
+    width: 10px;
+    height: 12px;
+    background: var(--accent-amber);
+    border-radius: 0 0 50% 50%;
+}
+
+.owl-body {
+    position: absolute;
+    bottom: 12px;
+    width: 65px;
+    height: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 30px;
+}
+
+.owl-wing {
+    position: absolute;
+    width: 26px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 50% 50% 40% 40%;
+    top: 0;
+}
+
+.owl-wing.left {
+    left: -8px;
+}
+
+.owl-wing.right {
+    right: -8px;
+}
+
+.owl-feet {
+    position: absolute;
+    bottom: -8px;
+    width: 40px;
+    height: 12px;
+    background: transparent;
+    display: flex;
+    justify-content: space-between;
+}
+
+.owl-feet::before,
+.owl-feet::after {
+    content: '';
+    width: 12px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent-amber);
+}
+
+.perch {
+    width: 100%;
+    height: 6px;
+    background: linear-gradient(90deg, #3f2b1a, #2a1a0f);
+    border-radius: 999px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.45);
+}
+
+.owl-hop {
+    animation: owlHop 0.6s ease forwards;
+}
+
+.owl-flight {
+    animation: owlFlyAway 1.4s ease-in forwards;
+}
+
+.owl-return {
+    animation: owlReturn 1.4s ease-out forwards;
+}
+
+.house-scroll {
+    width: 220px;
+    padding: 1rem;
+    background: linear-gradient(180deg, #f8f1dc, #e0cfa5);
+    border-radius: 12px;
+    border: 2px solid #d2b27f;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.35);
+    transform: scale(0.8);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.house-scroll.floating {
+    position: relative;
+    margin-top: 0.5rem;
+}
+
+.house-scroll::before,
+.house-scroll::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 12px;
+    background: #dcbf8d;
+    left: 0;
+}
+
+.house-scroll::before {
+    top: 0;
+}
+
+.house-scroll::after {
+    bottom: 0;
+}
+
+.house-scroll.scroll-arriving {
+    opacity: 1;
+    transform: translateY(20px) scale(0.9);
+}
+
+.house-scroll.scroll-open {
+    animation: scrollUnroll 0.9s forwards;
+}
+
+.scroll-title {
+    font-family: 'Harry Potter', 'Cinzel', serif;
+    letter-spacing: 0.06em;
+    font-size: 1rem;
+    text-align: center;
+    color: #4d3114;
+    margin-bottom: 0.5rem;
+}
+
+.house-result {
+    font-size: 0.95rem;
+    text-align: center;
+    color: #1f1408;
+    min-height: 2.5rem;
+}
+
+.house-result span {
+    display: block;
+    font-weight: 600;
+}
+
+.house-result.griffindor,
+.house-result.gryffindor {
+    color: #b21c26;
+    text-shadow: 0 0 10px rgba(178, 28, 38, 0.5);
+}
+
+.house-result.slytherin {
+    color: #1f5b3f;
+    text-shadow: 0 0 10px rgba(31, 91, 63, 0.5);
+}
+
+.house-result.ravenclaw {
+    color: #234b87;
+    text-shadow: 0 0 10px rgba(35, 75, 135, 0.5);
+}
+
+.house-result.hufflepuff {
+    color: #c28b01;
+    text-shadow: 0 0 10px rgba(194, 139, 1, 0.5);
+}
+
+@keyframes owlIdle {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+@keyframes blink {
+    0%, 45%, 46%, 100% { height: 16px; }
+    47%, 49% { height: 2px; }
+}
+
+@keyframes owlHop {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+    100% { transform: translateY(0); }
+}
+
+@keyframes owlFlyAway {
+    0% { transform: translate(0, 0); opacity: 1; }
+    100% { transform: translate(160px, -180px) scale(0.8); opacity: 0; }
+}
+
+@keyframes owlReturn {
+    0% { transform: translate(160px, -180px) scale(0.8); opacity: 0; }
+    100% { transform: translate(0, 0) scale(1); opacity: 1; }
+}
+
+@keyframes scrollUnroll {
+    0% { transform: translateY(0) scale(0.9); }
+    100% { transform: translateY(0) scale(1); }
+}
+
+@media (max-width: 768px) {
+    .owl-game {
+        position: static;
+        margin: 1.5rem auto;
+        align-items: center;
+    }
+
+    .house-form {
+        flex-direction: column;
+    }
+
+    .owl-perch {
+        width: 90px;
+    }
+}
+/* ---------- FORCE smaller gap between owl and Wanna Try ---------- */
+/* overrides the flex gap set on .hero-visual (this is the real control) */
+.hero-visual {
+    gap: 8px !important;          /* shrink the vertical space between children */
+    padding-bottom: 12px !important; /* keep some breathing room inside card */
+}
+
+/* ensure the invite block itself doesn't add extra top margin */
+.hero-visual > .magic-invite {
+    margin-top: 2px !important;
+}
+
+/* ---------- ENSURE the game/form appears BELOW the button ---------- */
+/* .owl-game is hidden by max-height / transitions — make sure visible state is positioned below */
+.owl-game {
+    position: relative !important;
+    margin-top: 6px !important;   /* small distance once it becomes visible */
+}
+
+/* when you toggle the visible class, keep a small gap */
+.owl-game.visible {
+    margin-top: 6px !important;
+    max-height: 500px !important;  /* keep the expand behavior intact */
+    pointer-events: auto !important;
+}
+
+/* Tiny tweak for mobile */
+@media (max-width: 768px) {
+    .hero-visual { gap: 10px !important; }
+    .owl-game, .owl-game.visible { margin-top: 8px !important; }
+}
+/* Make owl bigger safely */
+.owl-perch {
+    transform: scale(1.3);   /* Increase owl size */
+    transform-origin: center bottom; /* Keep it standing correctly */
+}
+/* Reduce space below the owl scroll */
+.floating-scroll-wrapper {
+    margin-top: -20px !important;   /* pulls it upward */
+    margin-bottom: -10px !important; /* reduces space before Sorting Challenge */
+}
+.hero-visual {
+    gap: 0px !important;
+    padding-bottom: 0 !important;
+}
+/* Force pull Sorting Challenge upward */
+.magic-invite {
+    position: relative;
+    top: -20px;   /* Move upward */
+}
+
+
+
+
+
+
+
+
+
+
